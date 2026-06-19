@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+  <meta name="theme-color" content="#0d0b1f" />
+  <meta name="description" content="Iron Quest - A fitness RPG to gamify your workout journey" />
   <title>Iron Quest — Fitness RPG</title>
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -58,9 +60,9 @@
       <form class="panel form-inline" id="practiceForm">
         <h3 class="panel-title">Forge a New Skill</h3>
         <div class="field-row">
-          <label>Name<input type="text" id="practiceName" placeholder="Bench Press" required /></label>
-          <label>Weight (kg)<input type="number" id="practiceWeight" min="0" step="0.5" value="20" required /></label>
-          <label>Reps<input type="number" id="practiceReps" min="0" step="1" value="10" required /></label>
+          <label for="practiceName">Name<input type="text" id="practiceName" placeholder="Bench Press" required aria-required="true" /></label>
+          <label for="practiceWeight">Weight (kg)<input type="number" id="practiceWeight" min="0" step="0.5" value="20" required aria-required="true" /></label>
+          <label for="practiceReps">Reps<input type="number" id="practiceReps" min="0" step="1" value="10" required aria-required="true" /></label>
         </div>
         <button type="submit" class="btn btn-primary">+ Add Skill</button>
       </form>
@@ -78,12 +80,13 @@
         <h3 class="panel-title" id="workoutFormTitle">Create a Quest</h3>
         <input type="hidden" id="workoutEditId" />
         <div class="field-row">
-          <label>Quest Name<input type="text" id="workoutName" placeholder="Push Day" required /></label>
-          <label>Rest Time (sec)<input type="number" id="workoutRest" min="0" step="5" value="90" required /></label>
+          <label for="workoutName">Quest Name<input type="text" id="workoutName" placeholder="Push Day" required aria-required="true" /></label>
+          <label for="workoutRest">Rest Time (sec)<input type="number" id="workoutRest" min="0" step="5" value="90" required aria-required="true" /></label>
         </div>
 
         <div class="add-exercise-row">
-          <select id="workoutPracticeSelect"></select>
+          <label for="workoutPracticeSelect" style="margin: 0; min-width: 0;">Select Skill</label>
+          <select id="workoutPracticeSelect" aria-label="Select skill to add to quest"></select>
           <button type="button" class="btn btn-secondary" id="addExerciseBtn">+ Add Skill to Quest</button>
         </div>
 
@@ -113,8 +116,8 @@
       <p class="view-sub">Paste a Spotify playlist, album, or track link to play music while you train.</p>
       <form class="panel form-inline" id="spotifyForm">
         <div class="field-row">
-          <label style="flex:1">Spotify Link or URI
-            <input type="text" id="spotifyInput" placeholder="https://open.spotify.com/playlist/..." />
+          <label for="spotifyInput" style="flex:1">Spotify Link or URI
+            <input type="text" id="spotifyInput" placeholder="https://open.spotify.com/playlist/..." aria-required="true" />
           </label>
         </div>
         <button type="submit" class="btn btn-primary">▶ Summon Bard</button>

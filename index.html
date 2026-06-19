@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iron Quest — Fitness RPG</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="scanlines"></div>
+
+  <header class="app-header">
+    <div class="hero-banner">
+      <div class="hero-avatar" id="heroAvatar">🛡️</div>
+      <div class="hero-info">
+        <h1 class="hero-name">Iron Quest</h1>
+        <div class="hero-level">
+          <span id="heroLevelLabel">Lv 1 — Novice</span>
+          <div class="xp-bar"><div class="xp-fill" id="xpFill"></div></div>
+          <span class="xp-text" id="xpText">0 / 100 XP</span>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-chip"><span class="stat-num" id="statWorkouts">0</span><span class="stat-lbl">Quests</span></div>
+        <div class="stat-chip"><span class="stat-num" id="statVolume">0</span><span class="stat-lbl">kg lifted</span></div>
+        <div class="stat-chip"><span class="stat-num" id="statStreak">0</span><span class="stat-lbl">Streak</span></div>
+      </div>
+    </div>
+
+    <nav class="tab-bar">
+      <button class="tab-btn active" data-view="dashboard">🏰 Hub</button>
+      <button class="tab-btn" data-view="practices">⚔️ Skills</button>
+      <button class="tab-btn" data-view="workouts">📜 Quests</button>
+      <button class="tab-btn" data-view="history">📖 Chronicle</button>
+      <button class="tab-btn" data-view="spotify">🎵 Bard</button>
+    </nav>
+  </header>
+
+  <main class="app-main">
+    <!-- DASHBOARD -->
+    <section class="view active" id="view-dashboard">
+      <h2 class="view-title">The Hub</h2>
+      <p class="view-sub">Choose a quest to begin your training.</p>
+      <div class="card-grid" id="dashboardQuests"></div>
+      <div class="empty-hint" id="dashboardEmpty" hidden>
+        No quests yet. Forge one in the <strong>Quests</strong> tab!
+      </div>
+    </section>
+
+    <!-- PRACTICES (Skills / Exercises) -->
+    <section class="view" id="view-practices">
+      <h2 class="view-title">Skill Library</h2>
+      <p class="view-sub">Your arsenal of exercises. Train them to level up.</p>
+
+      <form class="panel form-inline" id="practiceForm">
+        <h3 class="panel-title">Forge a New Skill</h3>
+        <div class="field-row">
+          <label>Name<input type="text" id="practiceName" placeholder="Bench Press" required /></label>
+          <label>Weight (kg)<input type="number" id="practiceWeight" min="0" step="0.5" value="20" required /></label>
+          <label>Reps<input type="number" id="practiceReps" min="0" step="1" value="10" required /></label>
+        </div>
+        <button type="submit" class="btn btn-primary">+ Add Skill</button>
+      </form>
+
+      <div class="card-grid" id="practiceList"></div>
+      <div class="empty-hint" id="practiceEmpty" hidden>No skills yet. Forge your first above!</div>
+    </section>
+
+    <!-- WORKOUTS (Quests) -->
+    <section class="view" id="view-workouts">
+      <h2 class="view-title">Quest Forge</h2>
+      <p class="view-sub">Combine skills into a quest. Set a rest time between battles.</p>
+
+      <form class="panel" id="workoutForm">
+        <h3 class="panel-title" id="workoutFormTitle">Create a Quest</h3>
+        <input type="hidden" id="workoutEditId" />
+        <div class="field-row">
+          <label>Quest Name<input type="text" id="workoutName" placeholder="Push Day" required /></label>
+          <label>Rest Time (sec)<input type="number" id="workoutRest" min="0" step="5" value="90" required /></label>
+        </div>
+
+        <div class="add-exercise-row">
+          <select id="workoutPracticeSelect"></select>
+          <button type="button" class="btn btn-secondary" id="addExerciseBtn">+ Add Skill to Quest</button>
+        </div>
+
+        <ul class="quest-exercise-list" id="workoutExercises"></ul>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" id="saveWorkoutBtn">Save Quest</button>
+          <button type="button" class="btn btn-ghost" id="cancelWorkoutBtn" hidden>Cancel</button>
+        </div>
+      </form>
+
+      <div class="card-grid" id="workoutList"></div>
+      <div class="empty-hint" id="workoutEmpty" hidden>No quests forged yet.</div>
+    </section>
+
+    <!-- HISTORY (Chronicle) -->
+    <section class="view" id="view-history">
+      <h2 class="view-title">The Chronicle</h2>
+      <p class="view-sub">Your battle history. Witness your growth, hero.</p>
+      <div class="history-list" id="historyList"></div>
+      <div class="empty-hint" id="historyEmpty" hidden>No battles recorded yet. Go complete a quest!</div>
+    </section>
+
+    <!-- SPOTIFY (Bard) -->
+    <section class="view" id="view-spotify">
+      <h2 class="view-title">Summon the Bard</h2>
+      <p class="view-sub">Paste a Spotify playlist, album, or track link to play music while you train.</p>
+      <form class="panel form-inline" id="spotifyForm">
+        <div class="field-row">
+          <label style="flex:1">Spotify Link or URI
+            <input type="text" id="spotifyInput" placeholder="https://open.spotify.com/playlist/..." />
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary">▶ Summon Bard</button>
+      </form>
+      <div class="spotify-embed" id="spotifyEmbed"></div>
+    </section>
+  </main>
+
+  <!-- ACTIVE WORKOUT OVERLAY -->
+  <div class="overlay" id="activeOverlay" hidden>
+    <div class="active-screen">
+      <header class="active-header">
+        <h2 id="activeTitle">Quest</h2>
+        <button class="btn btn-ghost" id="abandonBtn">✕ Abandon</button>
+      </header>
+
+      <div class="rest-timer-bar">
+        <div class="timer-display" id="timerDisplay">00:00</div>
+        <div class="timer-controls">
+          <button class="btn btn-secondary" id="timerStartBtn">Start Rest</button>
+          <button class="btn btn-ghost" id="timerStopBtn">Stop</button>
+          <span class="timer-default">Rest: <strong id="timerDefault">90s</strong></span>
+        </div>
+      </div>
+
+      <div class="active-exercise-list" id="activeExerciseList"></div>
+
+      <footer class="active-footer">
+        <button class="btn btn-primary btn-large" id="completeBtn">🏆 Complete Quest</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- LEVEL UP TOAST -->
+  <div class="toast" id="toast" hidden></div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

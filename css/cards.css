@@ -1,0 +1,36 @@
+/* cards.css — Card grid, game cards, tags & quest exercise builder */
+.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+
+.game-card {
+  background: linear-gradient(145deg, var(--panel-2), var(--panel));
+  border: 2px solid var(--border); border-radius: 14px; padding: 18px;
+  position: relative; overflow: hidden; transition: all 0.2s;
+}
+.game-card:hover { border-color: var(--accent-2); transform: translateY(-3px); box-shadow: var(--glow); }
+.game-card::before {
+  content: ''; position: absolute; top: -50%; right: -50%;
+  width: 100%; height: 100%; background: radial-gradient(circle, rgba(123,92,255,0.18), transparent 70%);
+}
+.card-name { font-family: 'Press Start 2P'; font-size: 11px; color: var(--accent); margin-bottom: 12px; line-height: 1.5; position: relative; }
+.card-stats { display: flex; gap: 16px; margin-bottom: 14px; position: relative; }
+.card-stat { font-size: 15px; }
+.card-stat strong { display: block; font-size: 20px; color: var(--accent-3); font-family: 'Press Start 2P'; font-size: 13px; margin-bottom: 4px; }
+.card-meta { font-size: 14px; color: var(--text-dim); margin-bottom: 12px; position: relative; }
+.card-actions { display: flex; gap: 8px; flex-wrap: wrap; position: relative; }
+.card-actions .btn { flex: 1; padding: 10px; }
+
+.exercise-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; position: relative; }
+.exercise-tag { font-size: 12px; background: #0c0a20; border: 1px solid var(--border); border-radius: 20px; padding: 4px 10px; color: var(--text-dim); }
+
+/* QUEST EXERCISE BUILDER LIST */
+.add-exercise-row { display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+.add-exercise-row select { flex: 1; }
+
+.quest-exercise-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.quest-exercise-item {
+  display: flex; align-items: center; gap: 10px;
+  background: #0c0a20; border: 2px solid var(--border); border-radius: 10px; padding: 10px 14px; flex-wrap: wrap;
+}
+.quest-exercise-item .qe-name { flex: 1; font-weight: 700; font-size: 16px; min-width: 100px; }
+.quest-exercise-item input { width: 80px; padding: 6px 8px; font-size: 14px; }
+.quest-exercise-item .qe-unit { font-size: 13px; color: var(--text-dim); }

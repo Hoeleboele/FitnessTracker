@@ -1,0 +1,40 @@
+/* base.css — Theme variables, reset, body & global typography */
+:root {
+  --bg: #0d0b1f;
+  --bg-2: #15122e;
+  --panel: #1d1940;
+  --panel-2: #262150;
+  --accent: #ffcb3d;
+  --accent-2: #7b5cff;
+  --accent-3: #2de2a3;
+  --danger: #ff5470;
+  --text: #ece9ff;
+  --text-dim: #9a93c7;
+  --border: #3a3270;
+  --glow: 0 0 18px rgba(123, 92, 255, 0.45);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+[hidden] { display: none !important; }
+
+body {
+  font-family: 'Rajdhani', sans-serif;
+  background:
+    radial-gradient(circle at 20% 0%, #241a52 0%, transparent 45%),
+    radial-gradient(circle at 90% 10%, #2a1840 0%, transparent 40%),
+    var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding-bottom: 100px;
+}
+
+.scanlines {
+  position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+  background: repeating-linear-gradient(0deg, rgba(0,0,0,0.12) 0px, rgba(0,0,0,0.12) 1px, transparent 1px, transparent 3px);
+  opacity: 0.25;
+}
+
+h1, h2, h3, .pixel, .tab-btn, .hero-level, .stat-num, .timer-display, .btn {
+  font-family: 'Press Start 2P', cursive;
+}

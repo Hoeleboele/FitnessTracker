@@ -1,0 +1,456 @@
+/* responsive.css — Mobile & tablet breakpoints */
+
+/* Small screens (320px - 599px) */
+@media (max-width: 599px) {
+  /* Root sizing */
+  :root {
+    font-size: 14px;
+  }
+
+  /* Body & general */
+  body {
+    padding-bottom: 110px;
+  }
+
+  /* Header & Navigation */
+  .app-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .hero-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    text-align: left;
+  }
+
+  .hero-avatar {
+    font-size: 32px;
+    width: 56px;
+    height: 56px;
+  }
+
+  .hero-info {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .hero-name {
+    font-size: 14px;
+  }
+
+  .hero-level {
+    font-size: 8px;
+  }
+
+  .hero-stats {
+    width: 100%;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .stat-chip {
+    flex: 1;
+    min-width: 0;
+    padding: 6px 8px;
+    font-size: 9px;
+  }
+
+  .stat-num {
+    font-size: 12px;
+  }
+
+  .stat-lbl {
+    font-size: 9px;
+  }
+
+  /* Tab navigation - horizontal scroll on mobile */
+  .tab-bar {
+    padding: 0 12px 8px;
+    gap: 6px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+
+  .tab-bar::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .tab-bar::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 2px;
+  }
+
+  .tab-btn {
+    font-size: 8px;
+    padding: 10px 8px;
+    flex-shrink: 0;
+    min-width: auto;
+    white-space: nowrap;
+  }
+
+  /* Main content area */
+  .app-main {
+    padding: 16px;
+    max-width: 100%;
+  }
+
+  .view-title {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+
+  .view-sub {
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+
+  /* Panels & Forms */
+  .panel {
+    padding: 14px;
+    margin-bottom: 16px;
+    border-radius: 10px;
+  }
+
+  .panel-title {
+    font-size: 10px;
+    margin-bottom: 12px;
+  }
+
+  .field-row {
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  label {
+    font-size: 12px;
+    gap: 4px;
+    flex: 1;
+    min-width: unset;
+  }
+
+  input, select {
+    font-size: 14px;
+    padding: 12px;
+    min-height: 44px; /* Touch target minimum */
+  }
+
+  /* Buttons */
+  .btn {
+    font-size: 8px;
+    padding: 10px 12px;
+    min-height: 44px; /* Touch target minimum */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+  }
+
+  .btn-large {
+    width: 100%;
+    font-size: 10px;
+    padding: 12px 16px;
+  }
+
+  .form-actions {
+    gap: 8px;
+    flex-direction: column;
+  }
+
+  .form-actions .btn {
+    width: 100%;
+    margin: 0;
+  }
+
+  /* Card Grid */
+  .card-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .game-card {
+    padding: 14px;
+    border-radius: 10px;
+  }
+
+  .card-name {
+    font-size: 10px;
+    margin-bottom: 10px;
+  }
+
+  .card-stats {
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .card-stat strong {
+    font-size: 11px;
+    margin-bottom: 2px;
+  }
+
+  .card-meta {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  .card-actions {
+    gap: 6px;
+  }
+
+  .card-actions .btn {
+    font-size: 8px;
+    padding: 8px;
+    flex: 1;
+    min-height: 40px;
+  }
+
+  /* Add Exercise Row */
+  .add-exercise-row {
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .add-exercise-row select {
+    width: 100%;
+  }
+
+  .add-exercise-row .btn {
+    width: 100%;
+  }
+
+  /* Quest Exercise List */
+  .quest-exercise-list {
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+
+  .quest-exercise-item {
+    flex-wrap: wrap;
+    padding: 10px 12px;
+    border-radius: 8px;
+    gap: 8px;
+  }
+
+  .quest-exercise-item .qe-name {
+    font-size: 14px;
+    min-width: 100%;
+  }
+
+  .quest-exercise-item input {
+    width: 70px;
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+
+  .quest-exercise-item .qe-unit {
+    font-size: 12px;
+  }
+
+  /* Exercise Tags */
+  .exercise-tags {
+    gap: 4px;
+  }
+
+  .exercise-tag {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+
+  /* Active Workout Overlay */
+  .active-screen {
+    padding: 12px;
+    min-height: 100vh;
+  }
+
+  .active-header {
+    margin-bottom: 12px;
+  }
+
+  .active-header h2 {
+    font-size: 13px;
+  }
+
+  .rest-timer-bar {
+    padding: 12px;
+    margin-bottom: 16px;
+    border-radius: 10px;
+  }
+
+  .timer-display {
+    font-size: 32px;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+
+  .timer-controls {
+    gap: 8px;
+  }
+
+  .timer-default {
+    font-size: 12px;
+  }
+
+  .active-exercise-list {
+    gap: 10px;
+  }
+
+  .active-ex {
+    border-radius: 10px;
+  }
+
+  .active-ex-head {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .active-ex-check {
+    width: 26px;
+    height: 26px;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  .active-ex-name {
+    font-size: 9px;
+  }
+
+  .active-ex-body {
+    padding: 0 12px 12px;
+    font-size: 12px;
+    gap: 10px;
+  }
+
+  .active-ex-body label {
+    font-size: 11px;
+  }
+
+  .active-ex-body input {
+    width: 80px;
+    min-height: 40px;
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  /* History Section */
+  .history-entry {
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+
+  .history-entry-head {
+    gap: 8px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+
+  .history-quest-name {
+    font-size: 10px;
+  }
+
+  .history-date {
+    font-size: 12px;
+  }
+
+  .history-badges {
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .history-badge {
+    font-size: 12px;
+  }
+
+  .history-badge strong {
+    font-size: 14px;
+  }
+
+  .history-table {
+    font-size: 12px;
+  }
+
+  .history-table th {
+    font-size: 11px;
+    padding: 4px 6px;
+  }
+
+  .history-table td {
+    padding: 4px 6px;
+  }
+
+  /* Empty state */
+  .empty-hint {
+    font-size: 14px;
+    padding: 24px 16px;
+  }
+
+  /* Toast notifications */
+  .toast {
+    font-size: 10px;
+    padding: 12px 16px;
+    bottom: 20px;
+    left: 16px;
+    right: 16px;
+    transform: translateX(0) translateY(120px);
+    max-width: unset;
+  }
+
+  .toast.show {
+    transform: translateX(0) translateY(0);
+  }
+
+  /* Spotify embed */
+  .spotify-embed {
+    min-height: 60px;
+    margin: -4px;
+  }
+}
+
+/* Medium screens (600px - 799px) */
+@media (max-width: 799px) and (min-width: 600px) {
+  /* Card grid - 2 columns on tablet */
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .hero-banner {
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 14px 18px;
+  }
+
+  .field-row {
+    flex-direction: column;
+  }
+
+  input, select {
+    min-height: 40px;
+  }
+
+  .btn {
+    min-height: 40px;
+  }
+
+  .tab-bar {
+    overflow-x: auto;
+  }
+}
+
+/* Large screens (800px+) */
+@media (min-width: 800px) {
+  /* Card grid - 3 columns on desktop */
+  .card-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+
+  .field-row {
+    flex-direction: row;
+  }
+}

@@ -1,0 +1,21 @@
+/* history.css — Chronicle / session history list & comparison table */
+.history-list { display: flex; flex-direction: column; gap: 14px; }
+.history-entry {
+  background: var(--panel); border: 2px solid var(--border); border-radius: 14px; padding: 18px;
+}
+.history-entry-head { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; }
+.history-quest-name { font-family: 'Press Start 2P'; font-size: 11px; color: var(--accent); }
+.history-date { font-size: 14px; color: var(--text-dim); }
+.history-badges { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 12px; }
+.history-badge { font-size: 14px; color: var(--text-dim); }
+.history-badge strong { color: var(--accent-3); font-size: 16px; }
+.history-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.history-table th { text-align: left; color: var(--text-dim); font-size: 13px; padding: 6px 8px; border-bottom: 1px solid var(--border); }
+.history-table td { padding: 6px 8px; border-bottom: 1px solid rgba(58,50,112,0.4); }
+.delta-up { color: var(--accent-3); }
+.delta-down { color: var(--danger); }
+.delta-same { color: var(--text-dim); }
+
+/* SPOTIFY */
+.spotify-embed { border-radius: 14px; overflow: hidden; min-height: 80px; }
+.spotify-embed iframe { width: 100%; border: none; border-radius: 14px; }

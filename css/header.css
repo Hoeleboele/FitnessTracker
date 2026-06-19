@@ -1,0 +1,59 @@
+/* header.css — Sticky header, hero banner, XP bar, stat chips & tab bar */
+.app-header {
+  position: sticky; top: 0; z-index: 50;
+  background: linear-gradient(180deg, var(--bg-2), rgba(13,11,31,0.92));
+  border-bottom: 2px solid var(--border);
+  backdrop-filter: blur(6px);
+}
+
+.hero-banner {
+  display: flex; align-items: center; gap: 20px;
+  max-width: 1100px; margin: 0 auto; padding: 18px 20px; flex-wrap: wrap;
+}
+
+.hero-avatar {
+  font-size: 38px; width: 64px; height: 64px;
+  display: grid; place-items: center;
+  background: var(--panel); border: 2px solid var(--accent);
+  border-radius: 12px; box-shadow: var(--glow);
+}
+
+.hero-info { flex: 1; min-width: 200px; }
+.hero-name { font-size: 18px; color: var(--accent); letter-spacing: 1px; }
+.hero-level { margin-top: 10px; font-size: 9px; color: var(--text-dim); }
+
+.xp-bar {
+  height: 14px; background: #0c0a20; border: 2px solid var(--border);
+  border-radius: 8px; overflow: hidden; margin: 6px 0 3px;
+}
+.xp-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--accent-2), var(--accent-3));
+  transition: width 0.6s cubic-bezier(.2,.8,.2,1);
+}
+.xp-text { font-size: 8px; }
+
+.hero-stats { display: flex; gap: 10px; }
+.stat-chip {
+  background: var(--panel); border: 2px solid var(--border);
+  border-radius: 10px; padding: 8px 12px; text-align: center; min-width: 72px;
+}
+.stat-num { display: block; font-size: 14px; color: var(--accent-3); }
+.stat-lbl { font-size: 11px; color: var(--text-dim); text-transform: uppercase; }
+
+.tab-bar {
+  display: flex; gap: 4px; max-width: 1100px; margin: 0 auto;
+  padding: 0 12px 10px; overflow-x: auto;
+}
+.tab-btn {
+  flex: 1; min-width: max-content;
+  font-size: 9px; padding: 12px 10px; cursor: pointer;
+  background: var(--panel); color: var(--text-dim);
+  border: 2px solid var(--border); border-radius: 8px;
+  transition: all 0.15s;
+}
+.tab-btn:hover { color: var(--text); border-color: var(--accent-2); }
+.tab-btn.active {
+  color: #1a1530; background: var(--accent);
+  border-color: var(--accent); box-shadow: var(--glow);
+}

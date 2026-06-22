@@ -30,7 +30,9 @@ function renderActiveExercises() {
   root.innerHTML = activeState.exercises.map((ex, i) => `
     <div class="active-ex ${ex.done ? 'done' : ''}" data-i="${i}">
       <div class="active-ex-head">
-        <div class="active-ex-check">${ex.done ? '✓' : ''}</div>
+        <div class="active-ex-check">
+          <input type="checkbox" class="ae-checkbox" ${ex.done ? 'checked' : ''} aria-label="Mark ${escapeHtml(ex.name)} as done">
+        </div>
         <div class="active-ex-name">${escapeHtml(ex.name)}</div>
         <div class="active-ex-toggle">${ex.weight}kg × ${ex.reps} ▾</div>
       </div>
@@ -57,13 +59,45 @@ function renderActiveExercises() {
 
   $$('.active-ex', root).forEach(el => {
     const i = +el.dataset.i;
-    $('.active-ex-head', el).addEventListener('click', () => el.classList.toggle('open'));
+    const head = $('.active-ex-head', el);
+    const checkbox = $('.ae-checkbox', el);
+    
+    // Head click - open/close (but not if clicking checkbox)
+    head.addEventListener('click', (e) => {
+      if (e.target !== checkbox && !checkbox.contains(e.target)) {
+        el.classList.toggle('open');
+      }
+    });
+    
+    // Checkbox change - mark done
+    checkbox.addEventListener('change', (e) => {
+      e.stopPropagation();
+      const exercise = activeState.exercises[i];
+      exercise.done = e.target.checked;
+      
+      // Reorder: move completed skills to bottom, incomplete to top
+      const undone = activeState.exercises.filter(ex => !ex.done);
+      const done = activeState.exercises.filter(ex => ex.done);
+      activeState.exercises = [...undone, ...done];
+      
+      if (exercise.done) startTimer();
+      renderActiveExercises();
+      updateCompleteButtonState();
+    });
+    
     $('.ae-weight', el).addEventListener('input', e => { activeState.exercises[i].weight = +e.target.value; });
     $('.ae-reps', el).addEventListener('input', e => { activeState.exercises[i].reps = +e.target.value; });
     $('.ae-rest', el).addEventListener('click', () => startTimer());
     $('.ae-done', el).addEventListener('click', () => {
-      activeState.exercises[i].done = !activeState.exercises[i].done;
-      if (activeState.exercises[i].done) startTimer();
+      const exercise = activeState.exercises[i];
+      exercise.done = !exercise.done;
+      
+      // Reorder: move completed skills to bottom, incomplete to top
+      const undone = activeState.exercises.filter(ex => !ex.done);
+      const done = activeState.exercises.filter(ex => ex.done);
+      activeState.exercises = [...undone, ...done];
+      
+      if (exercise.done) startTimer();
       renderActiveExercises();
       updateCompleteButtonState();
     });

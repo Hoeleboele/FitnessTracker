@@ -41,6 +41,30 @@ function seedDemoIfEmpty() {
   }
 }
 
+$('#undoBtn').addEventListener('click', () => {
+  if (Store.data.sessions.length === 0) {
+    toast('No quests to undo!');
+    return;
+  }
+  
+  const lastSession = Store.data.sessions[Store.data.sessions.length - 1];
+  if (confirm(`Undo "${lastSession.name}"? You will lose ${calculateSessionXp(lastSession)} XP.`)) {
+    if (confirm('This action cannot be undone. Click OK again to confirm.')) {
+      const xpToSubtract = calculateSessionXp(lastSession);
+      Store.data.profile.xp = Math.max(0, Store.data.profile.xp - xpToSubtract);
+      Store.data.sessions.pop();
+      Store.persist();
+      renderAll();
+      toast(`↶ Undid "${lastSession.name}"! -${xpToSubtract} XP`);
+    }
+  }
+});
+
+function calculateSessionXp(session) {
+  const volume = session.results.reduce((a, r) => a + r.weight * r.reps, 0);
+  return Math.max(20, Math.round(volume / 50) + 25);
+}
+
 $('#resetBtn').addEventListener('click', () => {
   if (confirm('⚠️ WARNING: This will reset your XP to 0 and clear ALL battle records. Are you sure?')) {
     if (confirm('This action cannot be undone. Click OK again to confirm.')) {

@@ -64,9 +64,30 @@
 }
 .active-ex-check {
   width: 28px; height: 28px; border-radius: 6px; border: 2px solid var(--border);
-  display: grid; place-items: center; font-size: 16px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  background: transparent;
+  padding: 0;
 }
-.active-ex.done .active-ex-check { background: var(--accent-3); border-color: var(--accent-3); color: #0c0a20; }
+.active-ex-check input[type="checkbox"] {
+  appearance: none;
+  width: 14px; height: 14px; cursor: pointer;
+  margin: 0;
+  border: 2px solid var(--text-dim);
+  border-radius: 2px;
+  background: transparent;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  display: block;
+  line-height: 1;
+  vertical-align: middle;
+}
+.active-ex-check input[type="checkbox"]:checked {
+  background: var(--accent-3);
+  border-color: var(--accent-3);
+}
+.active-ex.done .active-ex-check {
+  background: transparent; border-color: var(--border);
+}
 .active-ex-name { flex: 1; font-family: 'Press Start 2P'; font-size: 10px; color: var(--text); }
 .active-ex-toggle { color: var(--text-dim); font-size: 14px; }
 .active-ex-body {
@@ -78,3 +99,16 @@
 .active-ex-body input { width: 90px; }
 
 .active-footer { margin-top: 20px; position: sticky; bottom: 0; padding: 12px 0; }
+
+/* Mobile responsive */
+@media (max-width: 599px) {
+  .active-ex-head {
+    padding: 12px 14px;
+  }
+  .active-ex-check {
+    width: 18px; height: 18px; border-radius: 3px;
+  }
+  .active-ex-check input[type="checkbox"] {
+    width: 9px; height: 9px;
+  }
+}

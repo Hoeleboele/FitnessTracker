@@ -19,6 +19,7 @@ function startWorkout(workoutId) {
   $('#enemyName').textContent = enemy.name;
 
   renderActiveExercises();
+  updateCompleteButtonState();
   resetTimer();
   $('#activeOverlay').hidden = false;
   document.body.style.overflow = 'hidden';
@@ -64,8 +65,14 @@ function renderActiveExercises() {
       activeState.exercises[i].done = !activeState.exercises[i].done;
       if (activeState.exercises[i].done) startTimer();
       renderActiveExercises();
+      updateCompleteButtonState();
     });
   });
+}
+
+function updateCompleteButtonState() {
+  const allDone = activeState && activeState.exercises.every(ex => ex.done);
+  $('#completeBtn').hidden = !allDone;
 }
 
 $('#abandonBtn').addEventListener('click', () => {

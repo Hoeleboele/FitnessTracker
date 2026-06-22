@@ -41,4 +41,16 @@ function seedDemoIfEmpty() {
   }
 }
 
+$('#resetBtn').addEventListener('click', () => {
+  if (confirm('⚠️ WARNING: This will reset your XP to 0 and clear ALL battle records. Are you sure?')) {
+    if (confirm('This action cannot be undone. Click OK again to confirm.')) {
+      Store.data.profile.xp = 0;
+      Store.data.sessions = [];
+      Store.persist();
+      renderAll();
+      toast('💀 All progress has been reset!');
+    }
+  }
+});
+
 document.addEventListener('DOMContentLoaded', init);
